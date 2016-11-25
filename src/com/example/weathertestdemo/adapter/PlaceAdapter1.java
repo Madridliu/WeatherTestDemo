@@ -21,7 +21,7 @@ public class PlaceAdapter1 extends CommonAdapter<Place>{
 	@Override
 	public void convert(ViewHolder holder, Place place) {
 		// TODO Auto-generated method stub
-		holder.setText(R.id.tv1, place.getCity());
+		holder.setText(R.id.tv, place.getCity());
 	}
 
 	

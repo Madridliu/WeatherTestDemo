@@ -9,14 +9,12 @@ import com.example.weathertestdemo.model.Place;
 import com.example.weathertestdemo.util.CommonAdapter;
 import com.example.weathertestdemo.util.ViewHolder;
 
-public class PlaceAdapter extends CommonAdapter<Place>{
+public class PlaceAdapter extends CommonAdapter<Place> {
 
 	public PlaceAdapter(Context context, List<Place> datas, int LayoutId) {
 		super(context, datas, LayoutId);
 		// TODO Auto-generated constructor stub
 	}
-
-	
 
 	@Override
 	public void convert(ViewHolder holder, Place place) {
@@ -24,5 +22,4 @@ public class PlaceAdapter extends CommonAdapter<Place>{
 		holder.setText(R.id.tv, place.getProvince());
 	}
 
-	
 }

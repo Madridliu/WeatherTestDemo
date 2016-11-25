@@ -19,7 +19,7 @@ public class PlaceAdapter2 extends CommonAdapter<Place>{
 	@Override
 	public void convert(ViewHolder holder, Place place) {
 		// TODO Auto-generated method stub
-		holder.setText(R.id.tv2, place.getDistrict());
+		holder.setText(R.id.tv, place.getDistrict());
 	}
 
 	

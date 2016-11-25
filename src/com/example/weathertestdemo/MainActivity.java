@@ -31,7 +31,6 @@ public class MainActivity extends Activity {
 	public static final int SHOW_RESPONSE = -1;
 	public static final int LEVEL_PROVINCE = 0;
 	public static final int LEVEL_CITY = 1;
-	// public static final int LEVEL_CITYTe = 4;
 	public static final int LEVEL_DISTRICT = 2;
 
 	private TextView textView;
@@ -82,14 +81,12 @@ public class MainActivity extends Activity {
 			currentLevel = LEVEL_CITY;
 			listView.setAdapter(adapter1);
 			textView.setText(levelPlacePro);
-		} 
-			else if (currentLevel == LEVEL_CITY) {
+		} else if (currentLevel == LEVEL_CITY) {
 			listView.setAdapter(adapter);
 			textView.setText("中国");
 			currentLevel = LEVEL_PROVINCE;
-			
-		} 
-			else {
+
+		} else {
 			finish();
 		}
 
@@ -155,24 +152,21 @@ public class MainActivity extends Activity {
 		data = new ArrayList<Place>();
 		try {
 			JSONObject jsonObject = new JSONObject(response);
-			String reason = jsonObject.getString("reason");
 			if (jsonObject.getString("resultcode").equals("200")) {
 				JSONArray jA = jsonObject.getJSONArray("result");
-				for (int i = 0; i < jA.length(); i++) {
+				for (int i = 1; i < jA.length(); i++) {
 					Place place = new Place();
-					if (!jA.getJSONObject(i)
-							.getString("province")
-							.equals(jA.getJSONObject(i + 1).getString(
-									"province"))) {
-						place.setProvince(jA.getJSONObject(i).getString(
-								"province"));
+					if (!jA.getJSONObject(i).getString("province")
+							.equals(jA.getJSONObject(i - 1).getString("province"))) {
+						place.setProvince(jA.getJSONObject(i - 1).getString("province"));
 						data.add(place);
 					}
 				}
 			}
 
 		} catch (Exception e) {
-			Log.e("false", "省份解析失败");
+			Log.e("false", "省份解析失败" + e.getMessage());
+			
 		}
 	}
 
@@ -181,16 +175,13 @@ public class MainActivity extends Activity {
 		data1 = new ArrayList<Place>();
 		try {
 			JSONObject jsonObject = new JSONObject(response);
-			String reason = jsonObject.getString("reason");
 			if (jsonObject.getString("resultcode").equals("200")) {
 				JSONArray jA = jsonObject.getJSONArray("result");
 				for (int i = 0; i < jA.length(); i++) {
 					if (jA.getJSONObject(i).getString("province").equals(prov)) {
 						Place place = new Place();
-						if (!jA.getJSONObject(i)
-								.getString("city")
-								.equals(jA.getJSONObject(i + 1).getString(
-										"city"))) {
+						if (!jA.getJSONObject(i).getString("city")
+								.equals(jA.getJSONObject(i + 1).getString("city"))) {
 							place.setCity(jA.getJSONObject(i).getString("city"));
 							data1.add(place);
 						}
@@ -205,7 +196,6 @@ public class MainActivity extends Activity {
 
 	protected void parseWithJson2(String response, String cityTe) {
 		// TODO Auto-generated method stub
-
 		data2 = new ArrayList<Place>();
 		try {
 			JSONObject jsonObject = new JSONObject(response);
@@ -236,10 +226,9 @@ public class MainActivity extends Activity {
 
 	private void showCity(String str, String pro) {
 		currentLevel = LEVEL_CITY;
-
 		parseWithJson1(str, pro);
 		adapter1 = new PlaceAdapter1(MainActivity.this, data1,
-				R.layout.weather_listview1);
+				R.layout.weather_listview);
 		listView.setAdapter(adapter1);
 		textView.setText(pro);
 
@@ -249,7 +238,7 @@ public class MainActivity extends Activity {
 		currentLevel = LEVEL_DISTRICT;
 		parseWithJson2(str, cityT);
 		adapter2 = new PlaceAdapter2(MainActivity.this, data2,
-				R.layout.weather_listview2);
+				R.layout.weather_listview);
 		listView.setAdapter(adapter2);
 		textView.setText(cityT);
 
