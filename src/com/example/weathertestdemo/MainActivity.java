@@ -7,14 +7,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.example.weathertestdemo.adapter.PlaceAdapter;
-import com.example.weathertestdemo.adapter.PlaceAdapter1;
-import com.example.weathertestdemo.adapter.PlaceAdapter2;
 import com.example.weathertestdemo.adapter.WeatherCitylistAdapter;
 import com.example.weathertestdemo.model.Place;
 import com.example.weathertestdemo.util.HttpCallbackListener;
 import com.example.weathertestdemo.util.HttpUtil;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -44,7 +43,7 @@ public class MainActivity extends Activity {
 	private String temp;
 	private int currentLevel = 3;
 	private String str, str1;
-	private String levelPlacePro, levelPlaceCity;
+	private String levelPlacePro, levelPlaceCity, levelPlaceDistrict;
 	
 	
 	@Override
@@ -60,13 +59,21 @@ public class MainActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				
+				if (currentLevel == LEVEL_DISTRICT) {
+					levelPlaceDistrict = data2.get(position);
+					Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+					intent.putExtra("cityName", levelPlaceDistrict);
+					startActivity(intent);
+					finish();
+				}
+				
 				if (currentLevel == LEVEL_CITY) {
 					levelPlaceCity = data1.get(position);
 					handlerCollection(str1, levelPlaceCity);
 				}
 
 				if (currentLevel == LEVEL_PROVINCE) {
-					levelPlacePro = data.get(position); //存的是字符串，直接就取出的就是字符串
+					levelPlacePro = data.get(position); //存的是字符串，直接就取出对应位置的就是字符串
 					handlerCollection(levelPlacePro, str);
 				}
 
@@ -88,6 +95,8 @@ public class MainActivity extends Activity {
 			textView.setText("中国");
 			currentLevel = LEVEL_PROVINCE;
 		} else {
+			Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+			startActivity(intent);
 			finish();
 		}
 	}
@@ -120,7 +129,7 @@ public class MainActivity extends Activity {
 	private void handlerCollection(String pro, String citytemp) {
 		Message message = new Message();
 		message.what = SHOW_RESPONSE;
-		message.obj = temp.toString();
+		message.obj = temp;
 		Bundle bun = new Bundle();
 		bun.putString("msg", pro);
 		bun.putString("msgcity", citytemp);
@@ -130,7 +139,9 @@ public class MainActivity extends Activity {
 
 	private void showPlace() {
 
-		String url = "http://v.juhe.cn/weather/citys?key=6d031f7f9efd85805226e36117e9dbec";
+		temp =getResources().getString(R.string.datas);
+		handlerCollection(str, str1);
+		/*String url = "http://v.juhe.cn/weather/citys?key=6d031f7f9efd85805226e36117e9dbec";
 		HttpUtil.sendHttpRequest(url, new HttpCallbackListener() {
 
 			@Override
@@ -144,7 +155,7 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated method stub
 				Log.d("error", "fault");
 			}
-		});
+		});*/
 	}
 
 	protected void parseWithJson(String response) {
@@ -182,7 +193,9 @@ public class MainActivity extends Activity {
 						Place place = new Place();
 						if (!jA.getJSONObject(i).getString("city")
 								.equals(jA.getJSONObject(i + 1).getString("city"))) {
+							
 							place.setCity(jA.getJSONObject(i).getString("city"));
+							
 							data1.add(place.getCity());
 						}
 					}
