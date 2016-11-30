@@ -44,6 +44,7 @@ public class MainActivity extends Activity {
 	private int currentLevel = 3;
 	private String str, str1;
 	private String levelPlacePro, levelPlaceCity, levelPlaceDistrict;
+	private String tempCity;
 	
 	
 	@Override
@@ -61,6 +62,8 @@ public class MainActivity extends Activity {
 				
 				if (currentLevel == LEVEL_DISTRICT) {
 					levelPlaceDistrict = data2.get(position);
+//					tempCity = levelPlaceDistrict;
+					Log.d("点击县", levelPlaceDistrict);
 					Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
 					intent.putExtra("cityName", levelPlaceDistrict);
 					startActivity(intent);
@@ -95,7 +98,9 @@ public class MainActivity extends Activity {
 			textView.setText("中国");
 			currentLevel = LEVEL_PROVINCE;
 		} else {
+//			Log.d("点击县", tempCity);
 			Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+//			intent.putExtra("cityName", levelPlaceDistrict);
 			startActivity(intent);
 			finish();
 		}
@@ -139,7 +144,7 @@ public class MainActivity extends Activity {
 
 	private void showPlace() {
 
-		temp =getResources().getString(R.string.datas);
+		temp = getResources().getString(R.string.datas);
 		handlerCollection(str, str1);
 		/*String url = "http://v.juhe.cn/weather/citys?key=6d031f7f9efd85805226e36117e9dbec";
 		HttpUtil.sendHttpRequest(url, new HttpCallbackListener() {

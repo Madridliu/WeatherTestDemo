@@ -24,18 +24,38 @@ public final class R {
     public static final class drawable {
         public static final int category=0x7f020000;
         public static final int ic_launcher=0x7f020001;
+        public static final int weather=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000c;
+        public static final int action_settings=0x7f08001f;
         public static final int btnList=0x7f080003;
         public static final int city_name=0x7f080002;
         public static final int current_date=0x7f080006;
         public static final int list_view=0x7f080001;
         public static final int publish_text=0x7f080004;
-        public static final int temp1=0x7f080009;
-        public static final int temp2=0x7f08000a;
+        public static final int realTemp=0x7f080009;
         public static final int titile_text=0x7f080000;
-        public static final int tv=0x7f08000b;
+        public static final int tv=0x7f08001e;
+        public static final int tv_Day1=0x7f08000e;
+        public static final int tv_Day2=0x7f080012;
+        public static final int tv_Day3=0x7f080016;
+        public static final int tv_Day4=0x7f08001a;
+        public static final int tv_Max=0x7f08000d;
+        public static final int tv_Max1=0x7f080011;
+        public static final int tv_Max2=0x7f080015;
+        public static final int tv_Max3=0x7f080019;
+        public static final int tv_Max4=0x7f08001d;
+        public static final int tv_Min=0x7f08000c;
+        public static final int tv_Min1=0x7f080010;
+        public static final int tv_Min2=0x7f080014;
+        public static final int tv_Min3=0x7f080018;
+        public static final int tv_Min4=0x7f08001c;
+        public static final int tv_Today=0x7f08000a;
+        public static final int tv_Weather=0x7f08000b;
+        public static final int tv_Weather1=0x7f08000f;
+        public static final int tv_Weather2=0x7f080013;
+        public static final int tv_Weather3=0x7f080017;
+        public static final int tv_Weather4=0x7f08001b;
         public static final int weather_desp=0x7f080008;
         public static final int weather_info_layout=0x7f080005;
         public static final int week=0x7f080007;

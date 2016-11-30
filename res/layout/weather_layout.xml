@@ -67,15 +67,15 @@
                     android:text="2016-11-28"
                     android:textColor="#FFF"
                     android:textSize="18sp" />
-                
+
                 <TextView
                     android:id="@+id/week"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"
                     android:gravity="center"
-                    android:text="星期一"
+                    android:text="周一"
                     android:textColor="#FFF"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -97,13 +97,13 @@
                 android:orientation="horizontal" >
 
                 <TextView
-                    android:id="@+id/temp1"
+                    android:id="@+id/realTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="10"
                     android:textColor="#FFF"
-                    android:textSize="40sp" />
+                    android:textSize="43sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -113,32 +113,375 @@
                     android:textColor="#FFF"
                     android:textSize="40sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="~"
-                    android:textColor="#FFF"
-                    android:textSize="40sp" />
+               
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/temp2"
+                    android:id="@+id/tv_Today"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="10"
-                    android:textColor="#FFF"
-                    android:textSize="40sp" />
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="今天"
+                    android:textColor="#404040"
+                    android:textSize="17sp" />
 
                 <TextView
+                    android:id="@+id/tv_Weather"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="℃"
-                    android:textColor="#FFF"
-                    android:textSize="40sp" />
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="晴"
+                    android:textColor="#404040"
+                    android:textSize="23sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tv_Min"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="°"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_Max"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="°"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_Day1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="明天"
+                    android:textColor="#404040"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_Weather1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="晴"
+                    android:textColor="#404040"
+                    android:textSize="23sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tv_Min1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="°"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_Max1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="°"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_Day2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="今天"
+                    android:textColor="#404040"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_Weather2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="多云"
+                    android:textColor="#404040"
+                    android:textSize="23sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tv_Min2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="°"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_Max2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="°"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_Day3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="今天"
+                    android:textColor="#404040"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_Weather3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="晴"
+                    android:textColor="#404040"
+                    android:textSize="23sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tv_Min3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="°"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_Max3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="°"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_Day4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="今天"
+                    android:textColor="#404040"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_Weather4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="晴"
+                    android:textColor="#404040"
+                    android:textSize="23sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tv_Min4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="°"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_Max4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="°"
+                        android:textColor="#404040"
+                        android:textSize="15sp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
