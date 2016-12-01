@@ -6,12 +6,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.example.weathertestdemo.adapter.PlaceAdapter;
-import com.example.weathertestdemo.adapter.WeatherCitylistAdapter;
-import com.example.weathertestdemo.model.Place;
-import com.example.weathertestdemo.util.HttpCallbackListener;
-import com.example.weathertestdemo.util.HttpUtil;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +19,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.weathertestdemo.model.Place;
 
 public class MainActivity extends Activity {
 
@@ -44,7 +39,6 @@ public class MainActivity extends Activity {
 	private int currentLevel = 3;
 	private String str, str1;
 	private String levelPlacePro, levelPlaceCity, levelPlaceDistrict;
-	private String tempCity;
 	
 	
 	@Override
@@ -53,7 +47,8 @@ public class MainActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		initView();
-		showPlace();
+		
+		showPlace(str, str1);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -62,22 +57,21 @@ public class MainActivity extends Activity {
 				
 				if (currentLevel == LEVEL_DISTRICT) {
 					levelPlaceDistrict = data2.get(position);
-//					tempCity = levelPlaceDistrict;
-					Log.d("点击县", levelPlaceDistrict);
-					Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+					Log.e("点击县", levelPlaceDistrict);
+					Intent intent = new Intent();
 					intent.putExtra("cityName", levelPlaceDistrict);
-					startActivity(intent);
+					WeatherActivity.getInstance(intent);
 					finish();
 				}
 				
 				if (currentLevel == LEVEL_CITY) {
 					levelPlaceCity = data1.get(position);
-					handlerCollection(str1, levelPlaceCity);
+					showPlace(str1, levelPlaceCity);
 				}
 
 				if (currentLevel == LEVEL_PROVINCE) {
 					levelPlacePro = data.get(position); //存的是字符串，直接就取出对应位置的就是字符串
-					handlerCollection(levelPlacePro, str);
+					showPlace(levelPlacePro, str);
 				}
 
 			}
@@ -98,10 +92,9 @@ public class MainActivity extends Activity {
 			textView.setText("中国");
 			currentLevel = LEVEL_PROVINCE;
 		} else {
-//			Log.d("点击县", tempCity);
-			Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
-//			intent.putExtra("cityName", levelPlaceDistrict);
-			startActivity(intent);
+			Intent intent = new Intent();
+			intent.putExtra("cityName", levelPlaceDistrict);
+			WeatherActivity.getInstance(intent);
 			finish();
 		}
 	}
@@ -131,7 +124,8 @@ public class MainActivity extends Activity {
 		};
 	};
 
-	private void handlerCollection(String pro, String citytemp) {
+	private void showPlace(String pro, String citytemp) {
+		
 		Message message = new Message();
 		message.what = SHOW_RESPONSE;
 		message.obj = temp;
@@ -140,27 +134,6 @@ public class MainActivity extends Activity {
 		bun.putString("msgcity", citytemp);
 		message.setData(bun);
 		handler.sendMessage(message);
-	}
-
-	private void showPlace() {
-
-		temp = getResources().getString(R.string.datas);
-		handlerCollection(str, str1);
-		/*String url = "http://v.juhe.cn/weather/citys?key=6d031f7f9efd85805226e36117e9dbec";
-		HttpUtil.sendHttpRequest(url, new HttpCallbackListener() {
-
-			@Override
-			public void onFinish(String response) {
-				temp = response;
-				handlerCollection(str, str1);
-			}
-
-			@Override
-			public void onError(Exception e) {
-				// TODO Auto-generated method stub
-				Log.d("error", "fault");
-			}
-		});*/
 	}
 
 	protected void parseWithJson(String response) {
@@ -259,6 +232,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void initView() {
+		temp = getResources().getString(R.string.datas); //获取存入values/strings文件中的城市列表json数据
 		textView = (TextView) findViewById(R.id.titile_text);
 		listView = (ListView) findViewById(R.id.list_view);
 	}

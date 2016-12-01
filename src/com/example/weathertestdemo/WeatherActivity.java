@@ -56,9 +56,19 @@ public class WeatherActivity extends Activity implements OnClickListener{
 	private TextView infoWeather4;
 	private TextView min4;
 	private TextView max4;
-	
+	private String tempCity = "西安";
 	private Weather weather = new Weather();
-
+	private static WeatherActivity weatherActivity;
+	
+	//运用单例，使WeatherActivity始终只展示一个界面
+	public static WeatherActivity getInstance(Intent in){
+		if(weatherActivity==null){
+			weatherActivity = new WeatherActivity();
+		}
+		weatherActivity.setIntent(in);
+		return weatherActivity;
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -69,7 +79,30 @@ public class WeatherActivity extends Activity implements OnClickListener{
 		showWeather();
 		btnList.setOnClickListener(this);
 	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		showWeather();
+	}
+	
+	//点击侧边栏按钮，跳转到城市列表
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.btnList:
+			Intent intent = new Intent(WeatherActivity.this, MainActivity.class);
+			startActivity(intent);
+//			finish();
+			break;
 
+		default:
+			break;
+		}
+	}
+	
 	private Handler handler = new Handler(){
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -93,9 +126,17 @@ public class WeatherActivity extends Activity implements OnClickListener{
 
 	private void showWeather() {
 		// TODO Auto-generated method stub
-		String placeName = getIntent().getStringExtra("cityName");
+		String placeName = "";
+		if(weatherActivity!=null){
+			placeName = weatherActivity.getIntent().getStringExtra("cityName");	
+			if(placeName!=null&&!placeName.equals("")){
+				Log.e("用户选择地区值-->", placeName);
+				tempCity = placeName;				
+			}
+		}
+		Log.e("选择值-->", tempCity);
 		String url = "http://op.juhe.cn/onebox/weather/query?cityname="
-				+ placeName + "&key=e17e3ffde6a485fe3b366b74526fbb88";
+				+ tempCity + "&key=e17e3ffde6a485fe3b366b74526fbb88";
 		HttpUtil.sendHttpRequest(url, new HttpCallbackListener() {
 
 			@Override
@@ -255,23 +296,6 @@ public class WeatherActivity extends Activity implements OnClickListener{
 		}
 	}
 
-	
-
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		case R.id.btnList:
-			Intent intent = new Intent(WeatherActivity.this, MainActivity.class);
-			startActivity(intent);
-			finish();
-			break;
-
-		default:
-			break;
-		}
-	}
-	
 	private void initView() {
 		// TODO Auto-generated method stub
 		cityName = (TextView) findViewById(R.id.city_name);
