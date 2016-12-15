@@ -36,7 +36,6 @@ import com.example.weathertestdemo.view.MyLetterView.OnSlidingListener;
 
 public class listFragment extends Fragment {
 
-	protected static final String TAG = "MainActivity";
 	private MyLetterView myLetterView;// 自定义的View
 	private TextView tvDialog;// 主界面显示字母的TextView
 	private ListView lvCity;// 进行城市列表展示

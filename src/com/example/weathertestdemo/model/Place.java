@@ -1,5 +1,7 @@
 package com.example.weathertestdemo.model;
-
+/*
+ * 跟应用运行无关
+ */
 public class Place {
 	private String Province;
 	private String City;

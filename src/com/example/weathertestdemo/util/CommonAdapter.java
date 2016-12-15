@@ -2,6 +2,7 @@ package com.example.weathertestdemo.util;
 
 /**
  * listView万能适配器
+ 	跟应用运行无关 
  * @author liubo
  */
 import java.util.List;

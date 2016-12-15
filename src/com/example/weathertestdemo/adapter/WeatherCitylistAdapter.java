@@ -1,5 +1,7 @@
 package com.example.weathertestdemo.adapter;
-
+/*
+ * 跟应用运行无关
+ */
 import java.util.List;
 import com.example.weathertestdemo.R;
 import com.example.weathertestdemo.model.Place;

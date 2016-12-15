@@ -110,12 +110,11 @@ public class WeatherActivity extends FragmentActivity {
 								editor.commit();
 								tempCity = cityname;
 								showWeather();
-								
 							}
 
 						}));
 				transaction.addToBackStack(null); // ÃÌº”∑µªÿ’ª÷–
-				transaction.commitAllowingStateLoss();
+				transaction.commit();
 			}
 		});
 

@@ -1,5 +1,8 @@
 package com.example.weathertestdemo.adapter;
 
+/*
+ * 继承一个通用的adapter， 跟应用运行无关
+ */
 import java.util.List;
 
 import android.content.Context;
